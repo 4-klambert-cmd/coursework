@@ -6,6 +6,7 @@ package javaapplication2;
 import java.util.ArrayList;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 /**
  *
@@ -13,21 +14,30 @@ import java.sql.DriverManager;
  */
 public class databaseconnection {
     public static Connection ConnectDatabase(){
-    
-
-            
+                
         String url = "jdbc:mysql://185.156.138.148/4-klambert";
         String user = "4-klambert";
         String password = "Duty3-Palace-Area";
+        
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connection = DriverManager.getConnection(url, user, password);
-            System.out.println("conection good");
-            return connection;
+            Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
         } catch (Exception e){
             // stack trace shows errors
             e.printStackTrace();
-            System.out.println("not successful");
+            System.out.println("driver instance not successful");
+            return null;
+        }
+        Connection myconnection = null;
+        try {
+            myconnection = DriverManager.getConnection(url, user, password);
+            System.out.println("connection good");
+            return myconnection;
+        } catch (SQLException ex){
+            // stack trace shows errors
+            System.out.println("SQLException: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("VendorError: " + ex.getErrorCode());
+            System.out.println("connection not successful");
             return null;
         }
     }
