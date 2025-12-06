@@ -60,7 +60,8 @@ public class Statistics extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) 
+        {
             logger.log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
@@ -69,4 +70,5 @@ public class Statistics extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
-
+        }
+}
