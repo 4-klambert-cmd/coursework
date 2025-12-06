@@ -2,14 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package javaapplication2;
+//package javaapplication2;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
-import javax.swing.JButton;
-
 
 /**
  *
@@ -18,7 +16,7 @@ import javax.swing.JButton;
 public class playerregistration extends javax.swing.JFrame {
 
     /**
-     * Creates new form playerregistration
+     * Creates new form player registration
      */
     public playerregistration() {
         initComponents();
@@ -165,7 +163,12 @@ public class playerregistration extends javax.swing.JFrame {
                 } catch (Exception exception) {
                     exception.printStackTrace();
                 }
-            }
+        }
+    
+    
+    
+    
+    
     }//GEN-LAST:event_NPSubmitDBActionPerformed
 
     /**
@@ -202,6 +205,7 @@ public class playerregistration extends javax.swing.JFrame {
             }
         });
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BackButton1;
