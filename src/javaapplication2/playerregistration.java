@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-//package javaapplication2;
+package javaapplication2;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -135,7 +135,7 @@ public class playerregistration extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_BackButton1ActionPerformed
 
-    private void NPSubmitDBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NPSubmitDBActionPerformed
+    private void NPSubmitDBActionPerformed(java.awt.event.ActionEvent evt) {                                           
         // TODO add your handling code here:
         String Fullname = FullName1.getText();
         String Teamname = TeamName1.getText();
@@ -150,7 +150,7 @@ public class playerregistration extends javax.swing.JFrame {
             Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
             Connection connection = DriverManager.getConnection(url, user, password);
             //Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/swing_demo", "root", "root");
-            String query = "INSERT INTO Players values('" + Fullname + "','" + Teamname + "')";
+            String query = "INSERT INTO Players (players_name, Team_id) values('" + Fullname + "','" + Teamname + "')";
             Statement sta = connection.createStatement();
             int x = sta.executeUpdate(query);
             if (x == 0) {
@@ -165,13 +165,7 @@ public class playerregistration extends javax.swing.JFrame {
                 }
         }
     
-    
-    
-    
-    
-    }//GEN-LAST:event_NPSubmitDBActionPerformed
-
-    /**
+     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
