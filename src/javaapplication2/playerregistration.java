@@ -33,8 +33,8 @@ public class playerregistration extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        FullName1 = new javax.swing.JTextField();
-        TeamName1 = new javax.swing.JTextField();
+        FullNameBox = new javax.swing.JTextField();
+        TeamNameBox = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         BackButton1 = new javax.swing.JButton();
         NPSubmitDB = new javax.swing.JButton();
@@ -46,9 +46,9 @@ public class playerregistration extends javax.swing.JFrame {
 
         jLabel2.setText("Full Name:");
 
-        FullName1.addActionListener(new java.awt.event.ActionListener() {
+        FullNameBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                FullName1ActionPerformed(evt);
+                FullNameBoxActionPerformed(evt);
             }
         });
 
@@ -90,8 +90,8 @@ public class playerregistration extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(45, 45, 45)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(TeamName1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(FullName1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(TeamNameBox, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(FullNameBox, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(134, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -110,11 +110,11 @@ public class playerregistration extends javax.swing.JFrame {
                         .addComponent(BackButton1)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(FullName1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(FullNameBox, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TeamName1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TeamNameBox, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addGap(36, 36, 36)
                 .addComponent(NPSubmitDB)
@@ -124,9 +124,9 @@ public class playerregistration extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void FullName1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FullName1ActionPerformed
+    private void FullNameBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FullNameBoxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_FullName1ActionPerformed
+    }//GEN-LAST:event_FullNameBoxActionPerformed
 
     private void BackButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButton1ActionPerformed
         // TODO add your handling code here:
@@ -137,8 +137,8 @@ public class playerregistration extends javax.swing.JFrame {
 
     private void NPSubmitDBActionPerformed(java.awt.event.ActionEvent evt) {                                           
         // TODO add your handling code here:
-        String Fullname = FullName1.getText();
-        String Teamname = TeamName1.getText();
+        String Fullname = FullNameBox.getText();
+        String Teamname = TeamNameBox.getText();
 
         String msg = "" + Fullname;
         msg += " \n";
@@ -203,9 +203,9 @@ public class playerregistration extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BackButton1;
-    private javax.swing.JTextField FullName1;
+    private javax.swing.JTextField FullNameBox;
     private javax.swing.JButton NPSubmitDB;
-    private javax.swing.JTextField TeamName1;
+    private javax.swing.JTextField TeamNameBox;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
