@@ -4,6 +4,13 @@
  */
 package javaapplication2;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import javax.swing.JButton;
+
+
 /**
  *
  * @author 4-klambert
@@ -28,10 +35,11 @@ public class playerregistration extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        FullName1 = new javax.swing.JTextField();
+        TeamName1 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         BackButton1 = new javax.swing.JButton();
+        NPSubmitDB = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -40,9 +48,9 @@ public class playerregistration extends javax.swing.JFrame {
 
         jLabel2.setText("Full Name:");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        FullName1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                FullName1ActionPerformed(evt);
             }
         });
 
@@ -52,6 +60,13 @@ public class playerregistration extends javax.swing.JFrame {
         BackButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BackButton1ActionPerformed(evt);
+            }
+        });
+
+        NPSubmitDB.setText("Submit");
+        NPSubmitDB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NPSubmitDBActionPerformed(evt);
             }
         });
 
@@ -77,9 +92,13 @@ public class playerregistration extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(45, 45, 45)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(TeamName1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(FullName1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(134, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(NPSubmitDB)
+                .addGap(185, 185, 185))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -93,21 +112,23 @@ public class playerregistration extends javax.swing.JFrame {
                         .addComponent(BackButton1)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(FullName1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TeamName1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
-                .addContainerGap(157, Short.MAX_VALUE))
+                .addGap(36, 36, 36)
+                .addComponent(NPSubmitDB)
+                .addContainerGap(94, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void FullName1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FullName1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_FullName1ActionPerformed
 
     private void BackButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButton1ActionPerformed
         // TODO add your handling code here:
@@ -115,6 +136,37 @@ public class playerregistration extends javax.swing.JFrame {
         hs.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BackButton1ActionPerformed
+
+    private void NPSubmitDBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NPSubmitDBActionPerformed
+        // TODO add your handling code here:
+        String Fullname = FullName1.getText();
+        String Teamname = TeamName1.getText();
+
+        String msg = "" + Fullname;
+        msg += " \n";
+        String url = "jdbc:mysql://185.156.138.148/4-klambert";
+        String user = "4-klambert";
+        String password = "Duty3-Palace-Area";
+        
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
+            Connection connection = DriverManager.getConnection(url, user, password);
+            //Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/swing_demo", "root", "root");
+            String query = "INSERT INTO Players values('" + Fullname + "','" + Teamname + "')";
+            Statement sta = connection.createStatement();
+            int x = sta.executeUpdate(query);
+            if (x == 0) {
+                JOptionPane.showMessageDialog(NPSubmitDB, "This player already exists");
+            } else {
+                JOptionPane.showMessageDialog(NPSubmitDB,
+                            "Welcome, " + msg + "Player is sucessfully created");
+                    }
+                    connection.close();
+                } catch (Exception exception) {
+                    exception.printStackTrace();
+                }
+            }
+    }//GEN-LAST:event_NPSubmitDBActionPerformed
 
     /**
      * @param args the command line arguments
@@ -153,10 +205,11 @@ public class playerregistration extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BackButton1;
+    private javax.swing.JTextField FullName1;
+    private javax.swing.JButton NPSubmitDB;
+    private javax.swing.JTextField TeamName1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }

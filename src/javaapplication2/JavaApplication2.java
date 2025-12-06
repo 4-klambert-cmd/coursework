@@ -15,7 +15,7 @@ public class JavaApplication2 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        databaseconnection dc = new databaseconnection();
+        // databaseconnection dc = new databaseconnection();
         homescreen hs = new homescreen();
         hs.setVisible(true);
     }

@@ -3,10 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package javaapplication2;
-import java.util.ArrayList;
+//import java.util.ArrayList;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
+//import java.sql.SQLException;
 
 /**
  *
@@ -19,25 +19,17 @@ public class databaseconnection {
         String user = "4-klambert";
         String password = "Duty3-Palace-Area";
         
+        Connection myconnection = null;
+        
         try {
             Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
+            myconnection = DriverManager.getConnection(url, user, password);
+            System.out.println("connection good");
+            return myconnection;
         } catch (Exception e){
             // stack trace shows errors
             e.printStackTrace();
             System.out.println("driver instance not successful");
-            return null;
-        }
-        Connection myconnection = null;
-        try {
-            myconnection = DriverManager.getConnection(url, user, password);
-            System.out.println("connection good");
-            return myconnection;
-        } catch (SQLException ex){
-            // stack trace shows errors
-            System.out.println("SQLException: " + ex.getMessage());
-            System.out.println("SQLState: " + ex.getSQLState());
-            System.out.println("VendorError: " + ex.getErrorCode());
-            System.out.println("connection not successful");
             return null;
         }
     }
