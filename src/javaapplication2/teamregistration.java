@@ -122,7 +122,7 @@ public class teamregistration extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_BackButton1ActionPerformed
 
-    private void NPSubmitDBActionPerformed(java.awt.event.ActionEvent evt) {                                           
+    private void NTSubmitDBActionPerformed(java.awt.event.ActionEvent evt) {                                           
         // TODO add your handling code here:
         String Teamname = TeamNameBox.getText();
 
