@@ -4,6 +4,14 @@
  */
 package javaapplication2;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import java.sql.ResultSet;
+import java.sql.PreparedStatement;
+import java.util.Date;
+
 /**
  *
  * @author 4-klambert
@@ -16,7 +24,53 @@ public class newmatch3 extends javax.swing.JFrame {
      * Creates new form newmatch3
      */
     public newmatch3() {
+        
         initComponents();
+        
+        ResultSet vHometeam1;
+        ResultSet vAwayteam1;
+        ResultSet vBatter1;
+        ResultSet vBatter2;
+        ResultSet vBowler1;
+        //Statement vStatement;
+        String url = "jdbc:mysql://185.156.138.148/4-klambert";
+        String user = "4-klambert";
+        String password = "Duty3-Palace-Area";
+        String vQueryteams = "SELECT team_name FROM Teams";
+        String vQueryplayers = "SELECT players_name FROM Players";
+        
+        try {
+        Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
+        Connection connect = DriverManager.getConnection(url, user, password);
+        PreparedStatement ps1 = connect.prepareStatement(vQueryteams);
+        PreparedStatement ps2 = connect.prepareStatement(vQueryteams);
+        PreparedStatement ps3 = connect.prepareStatement(vQueryplayers);
+        PreparedStatement ps4 = connect.prepareStatement(vQueryplayers);
+        PreparedStatement ps5 = connect.prepareStatement(vQueryplayers);
+        
+        //vStatement = connect.createStatement();    
+        vHometeam1 = ps1.executeQuery();
+        vAwayteam1 = ps2.executeQuery();
+        vBatter1 = ps3.executeQuery();
+        vBatter2 = ps4.executeQuery();
+        vBowler1 = ps5.executeQuery();
+        while(vHometeam1.next()) {
+            HomeTeamComboBox1.addItem(vHometeam1.getString("team_name"));
+        }
+        while(vAwayteam1.next()) {
+            AwayTeamComboBox2.addItem(vAwayteam1.getString("team_name"));
+        }
+        while(vBatter1.next()) {
+            Batter1.addItem(vBatter1.getString("players_name"));
+        }
+        while(vBatter2.next()) {
+            Batter2.addItem(vBatter2.getString("players_name"));
+        }
+        while(vBowler1.next()) {
+            Bowler.addItem(vBowler1.getString("players_name"));
+        }
+        } catch (Exception e) {
+        }
     }
 
     /**
@@ -66,11 +120,11 @@ public class newmatch3 extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        Overlabel = new javax.swing.JLabel();
         overnumber = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         roundnumber = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
+        Pairlabel = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -81,14 +135,15 @@ public class newmatch3 extends javax.swing.JFrame {
         HomeTeamComboBox1 = new javax.swing.JComboBox<>();
         AwayTeamComboBox2 = new javax.swing.JComboBox<>();
         BackButton1 = new javax.swing.JButton();
+        NMSubmitDB = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        Batter1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        Batter1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Batter1" }));
 
-        Bowler.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        Bowler.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bowler" }));
 
-        Batter2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        Batter2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Batter2" }));
 
         jbtn2.setText("2");
 
@@ -188,7 +243,7 @@ public class newmatch3 extends javax.swing.JFrame {
 
         jLabel5.setText("Bowler");
 
-        jLabel6.setText("Over");
+        Overlabel.setText("Over");
 
         overnumber.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -204,7 +259,7 @@ public class newmatch3 extends javax.swing.JFrame {
             }
         });
 
-        jLabel8.setText("Round");
+        Pairlabel.setText("Pair");
 
         jLabel9.setText("of 4");
 
@@ -216,14 +271,14 @@ public class newmatch3 extends javax.swing.JFrame {
 
         jLabel13.setText("C - Caught, B - Bowled, S - Stumped, R - run out");
 
-        HomeTeamComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        HomeTeamComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "HomeTeam" }));
         HomeTeamComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 HomeTeamComboBox1ActionPerformed(evt);
             }
         });
 
-        AwayTeamComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        AwayTeamComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AwayTeam" }));
         AwayTeamComboBox2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AwayTeamComboBox2ActionPerformed(evt);
@@ -234,6 +289,13 @@ public class newmatch3 extends javax.swing.JFrame {
         BackButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BackButton1ActionPerformed(evt);
+            }
+        });
+
+        NMSubmitDB.setText("Submit");
+        NMSubmitDB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NMSubmitDBActionPerformed(evt);
             }
         });
 
@@ -293,20 +355,11 @@ public class newmatch3 extends javax.swing.JFrame {
                                 .add(16, 16, 16)))
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                             .add(layout.createSequentialGroup()
-                                .add(31, 31, 31)
-                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                                    .add(jbtncaught, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 44, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                    .add(jbtnbowled, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 44, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                                .add(18, 18, 18)
-                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                    .add(jbtnstumped, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 44, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                    .add(jbtnrunout, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 44, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                            .add(layout.createSequentialGroup()
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
                                     .add(layout.createSequentialGroup()
                                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                            .add(org.jdesktop.layout.GroupLayout.TRAILING, jLabel6)
-                                            .add(org.jdesktop.layout.GroupLayout.TRAILING, jLabel8))
+                                            .add(org.jdesktop.layout.GroupLayout.TRAILING, Overlabel)
+                                            .add(org.jdesktop.layout.GroupLayout.TRAILING, Pairlabel))
                                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                                             .add(layout.createSequentialGroup()
@@ -331,7 +384,7 @@ public class newmatch3 extends javax.swing.JFrame {
                                     .add(layout.createSequentialGroup()
                                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                         .add(B16, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 27, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                        .add(12, 12, 12)
                                         .add(jLabel10)
                                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                         .add(batter1total, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 27, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
@@ -341,14 +394,9 @@ public class newmatch3 extends javax.swing.JFrame {
                                             .add(BackButton1)
                                             .add(jbtnnext)))))
                             .add(layout.createSequentialGroup()
-                                .add(6, 6, 6)
-                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                    .add(jLabel2)
-                                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                    .add(HomeTeamComboBox1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                            .add(layout.createSequentialGroup()
+                                .add(2, 2, 2)
                                 .add(B21, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 27, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(4, 4, 4)
                                 .add(B22, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 27, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                 .add(B23, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 25, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -361,10 +409,28 @@ public class newmatch3 extends javax.swing.JFrame {
                                         .add(B25, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 27, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                         .add(B26, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 27, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                        .add(jLabel11)
                                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .add(batter2total, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 27, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))))
+                                        .add(jLabel11)
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                        .add(batter2total, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 27, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
+                            .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
+                                .add(layout.createSequentialGroup()
+                                    .add(31, 31, 31)
+                                    .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                                        .add(jbtncaught, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 44, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                        .add(jbtnbowled, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 44, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                                    .add(18, 18, 18)
+                                    .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                        .add(jbtnstumped, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 44, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                        .add(jbtnrunout, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 44, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                                    .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .add(NMSubmitDB))
+                                .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
+                                    .add(6, 6, 6)
+                                    .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                        .add(jLabel2)
+                                        .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                        .add(HomeTeamComboBox1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))))
                     .add(layout.createSequentialGroup()
                         .add(61, 61, 61)
                         .add(jLabel5)
@@ -390,13 +456,13 @@ public class newmatch3 extends javax.swing.JFrame {
                                 .add(jLabel5))
                             .add(layout.createSequentialGroup()
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                                    .add(jLabel6)
+                                    .add(Overlabel)
                                     .add(overnumber, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                     .add(jLabel7))
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                                     .add(roundnumber, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                    .add(jLabel8)
+                                    .add(Pairlabel)
                                     .add(jLabel9))))
                         .add(18, 18, 18))
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
@@ -442,13 +508,18 @@ public class newmatch3 extends javax.swing.JFrame {
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(jbtncaught, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 42, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(jbtnrunout, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 42, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(jbtnbowled, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 42, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(jbtnstumped, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 42, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                            .add(layout.createSequentialGroup()
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                                    .add(jbtncaught, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 42, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                    .add(jbtnrunout, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 42, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                                    .add(jbtnbowled, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 42, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                    .add(jbtnstumped, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 42, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                            .add(layout.createSequentialGroup()
+                                .add(NMSubmitDB)
+                                .add(28, 28, 28)))
                         .add(jLabel2)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -526,6 +597,25 @@ public class newmatch3 extends javax.swing.JFrame {
 
     private void HomeTeamComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeTeamComboBox1ActionPerformed
         // TODO add your handling code here:
+      /*  ResultSet vResults;
+        //Statement vStatement;
+        String url = "jdbc:mysql://185.156.138.148/4-klambert";
+        String user = "4-klambert";
+        String password = "Duty3-Palace-Area";
+        String vQuery = "SELECT team_name FROM Teams";
+        
+        try {
+        Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
+        Connection connect = DriverManager.getConnection(url, user, password);
+        PreparedStatement ps = connect.prepareStatement(vQuery);
+        //vStatement = connect.createStatement();    
+        vResults = ps.executeQuery();
+        while(vResults.next()) {
+            HomeTeamComboBox1.addItem(vResults.getString("team_name"));
+        }
+    } catch (Exception e) {
+
+    }*/
     }//GEN-LAST:event_HomeTeamComboBox1ActionPerformed
 
     private void AwayTeamComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AwayTeamComboBox2ActionPerformed
@@ -538,6 +628,37 @@ public class newmatch3 extends javax.swing.JFrame {
         hs.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BackButton1ActionPerformed
+
+    private void NMSubmitDBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NMSubmitDBActionPerformed
+        // TODO add your handling code here:
+      /*  String Fullname = FullNameBox.getText();
+        String Teamname = TeamNameBox.getText();
+        
+
+        String msg = "" + Fullname;
+        msg += " \n";
+        String url = "jdbc:mysql://185.156.138.148/4-klambert";
+        String user = "4-klambert";
+        String password = "Duty3-Palace-Area";
+        
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
+            Connection connection = DriverManager.getConnection(url, user, password);
+            //Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/swing_demo", "root", "root");
+            String query = "INSERT INTO Players (players_name, Team_id) values('" + Fullname + "','" + Teamname + "')";
+            Statement sta = connection.createStatement();
+            int x = sta.executeUpdate(query);
+            if (x == 0) {
+                JOptionPane.showMessageDialog(NPSubmitDB, "This player already exists");
+            } else {
+                JOptionPane.showMessageDialog(NPSubmitDB,
+                            "Welcome, " + msg + "Player is sucessfully created");
+                    }
+                    connection.close();
+                } catch (Exception exception) {
+                    exception.printStackTrace();
+                }*/
+    }//GEN-LAST:event_NMSubmitDBActionPerformed
 
     /**
      * @param args the command line arguments
@@ -586,6 +707,9 @@ public class newmatch3 extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> Batter2;
     private javax.swing.JComboBox<String> Bowler;
     private javax.swing.JComboBox<String> HomeTeamComboBox1;
+    private javax.swing.JButton NMSubmitDB;
+    private javax.swing.JLabel Overlabel;
+    private javax.swing.JLabel Pairlabel;
     private javax.swing.JTextField batter1total;
     private javax.swing.JTextField batter2total;
     private javax.swing.JTextField ctotal;
@@ -598,9 +722,7 @@ public class newmatch3 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
