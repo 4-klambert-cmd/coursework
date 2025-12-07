@@ -631,12 +631,29 @@ public class newmatch3 extends javax.swing.JFrame {
 
     private void NMSubmitDBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NMSubmitDBActionPerformed
         // TODO add your handling code here:
-      /*  String Fullname = FullNameBox.getText();
-        String Teamname = TeamNameBox.getText();
-        
-
-        String msg = "" + Fullname;
-        msg += " \n";
+        String sbatter1 = String.valueOf(Batter1.getSelectedItem());
+        String sbatter2 = String.valueOf(Batter2.getSelectedItem());
+        String sbowler = String.valueOf(Bowler.getSelectedItem());
+        String sb11 = B11.getText();
+        String sb12 = B12.getText();
+        String sb13 = B13.getText();
+        String sb14 = B14.getText();
+        String sb15 = B15.getText();
+        String sb16 = B16.getText();
+        String sb21 = B21.getText();
+        String sb22 = B22.getText();
+        String sb23 = B23.getText();
+        String sb24 = B24.getText();
+        String sb25 = B25.getText();
+        String sb26 = B26.getText();
+        String sovernumber = overnumber.getText();
+        String spairnumber = roundnumber.getText();
+        String sb1total = batter1total.getText();
+        String sb2total = batter2total.getText();
+        String spairtotal = ctotal.getText();
+        String shometeam = String.valueOf(HomeTeamComboBox1.getSelectedItem());
+        String sawayteam = String.valueOf(AwayTeamComboBox2.getSelectedItem());
+            
         String url = "jdbc:mysql://185.156.138.148/4-klambert";
         String user = "4-klambert";
         String password = "Duty3-Palace-Area";
@@ -644,20 +661,23 @@ public class newmatch3 extends javax.swing.JFrame {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
             Connection connection = DriverManager.getConnection(url, user, password);
-            //Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/swing_demo", "root", "root");
-            String query = "INSERT INTO Players (players_name, Team_id) values('" + Fullname + "','" + Teamname + "')";
+            String query = "INSERT INTO scratch (batter1,batter2,bowler,b11,b12,b13,b14,b15,b16,b21,b22,b23,b24,b25,b26,overnumber,pairnumber,b1total,b2total,pairtotal,hometeam,awayteam) values('" 
+                    + sbatter1 + "','" + sbatter2 + "','" + sbowler + "','" + sb11 + "','" + sb12 +
+                    "','" + sb13 + "','" + sb14 + "','" + sb15 + "','" + sb16 + "','" + sb21 +
+                    "','" + sb22 + "','" + sb23 + "','" + sb24 + "','" + sb25 + "','" + sb26 +
+                    "','" + sovernumber + "','" + spairnumber + "','" + sb1total + "','" + sb2total +
+                    "','" + spairtotal + "','" + shometeam + "','" + sawayteam + "')";
             Statement sta = connection.createStatement();
             int x = sta.executeUpdate(query);
             if (x == 0) {
-                JOptionPane.showMessageDialog(NPSubmitDB, "This player already exists");
+                JOptionPane.showMessageDialog(NMSubmitDB, "This pair round already exists");
             } else {
-                JOptionPane.showMessageDialog(NPSubmitDB,
-                            "Welcome, " + msg + "Player is sucessfully created");
+                JOptionPane.showMessageDialog(NMSubmitDB, "Pair round is sucessfully stored");
                     }
                     connection.close();
                 } catch (Exception exception) {
                     exception.printStackTrace();
-                }*/
+                }
     }//GEN-LAST:event_NMSubmitDBActionPerformed
 
     /**
