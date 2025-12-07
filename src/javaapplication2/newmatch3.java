@@ -80,6 +80,7 @@ public class newmatch3 extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         HomeTeamComboBox1 = new javax.swing.JComboBox<>();
         AwayTeamComboBox2 = new javax.swing.JComboBox<>();
+        BackButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -229,10 +230,25 @@ public class newmatch3 extends javax.swing.JFrame {
             }
         });
 
+        BackButton1.setText("Back");
+        BackButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackButton1ActionPerformed(evt);
+            }
+        });
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(layout.createSequentialGroup()
+                .addContainerGap()
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jLabel13, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(layout.createSequentialGroup()
+                        .add(jLabel12, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 251, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .add(85, 85, 85))
             .add(layout.createSequentialGroup()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(layout.createSequentialGroup()
@@ -321,7 +337,9 @@ public class newmatch3 extends javax.swing.JFrame {
                                         .add(batter1total, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 27, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                                     .add(layout.createSequentialGroup()
                                         .add(18, 18, 18)
-                                        .add(jbtnnext))))
+                                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                            .add(BackButton1)
+                                            .add(jbtnnext)))))
                             .add(layout.createSequentialGroup()
                                 .add(6, 6, 6)
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -351,22 +369,20 @@ public class newmatch3 extends javax.swing.JFrame {
                         .add(61, 61, 61)
                         .add(jLabel5)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                        .add(Bowler, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 91, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                            .add(jLabel13, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .add(org.jdesktop.layout.GroupLayout.LEADING, jLabel12, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 251, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
+                        .add(Bowler, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 91, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
                     .add(layout.createSequentialGroup()
                         .add(jLabel12, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 24, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jLabel13)
+                        .add(jLabel13))
+                    .add(BackButton1))
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(layout.createSequentialGroup()
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
                             .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
@@ -384,7 +400,7 @@ public class newmatch3 extends javax.swing.JFrame {
                                     .add(jLabel9))))
                         .add(18, 18, 18))
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
+                        .add(24, 24, 24)
                         .add(jbtnnext)
                         .add(31, 31, 31)))
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -516,6 +532,13 @@ public class newmatch3 extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_AwayTeamComboBox2ActionPerformed
 
+    private void BackButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButton1ActionPerformed
+        // TODO add your handling code here:
+        homescreen hs = new homescreen();
+        hs.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_BackButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -558,6 +581,7 @@ public class newmatch3 extends javax.swing.JFrame {
     private javax.swing.JTextField B24;
     private javax.swing.JTextField B25;
     private javax.swing.JTextField B26;
+    private javax.swing.JButton BackButton1;
     private javax.swing.JComboBox<String> Batter1;
     private javax.swing.JComboBox<String> Batter2;
     private javax.swing.JComboBox<String> Bowler;
